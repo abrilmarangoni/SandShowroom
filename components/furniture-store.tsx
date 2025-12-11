@@ -192,7 +192,7 @@ export function FurnitureStore() {
                   </button>
                   <Link 
                     href={`/product/${product.id}`}
-                    className="block mt-4 text-sm text-[#5d5855] hover:text-[#3d3835] transition-colors"
+                    className="block mt-4 text-sm text-[#5d5855] hover:text-[#3d3835] hover:translate-y-[-1px] transition-all underline-offset-4 hover:underline"
                   >
                     View Details
                   </Link>

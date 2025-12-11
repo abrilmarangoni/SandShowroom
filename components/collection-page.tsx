@@ -292,7 +292,7 @@ export function CollectionPage() {
                 </button>
                 <Link
                   href={`/product/${product.id}`}
-                  className="block text-center text-sm text-[#5d5855] hover:text-[#3d3835] transition-colors"
+                  className="block text-center text-sm text-[#5d5855] hover:text-[#3d3835] hover:translate-y-[-1px] transition-all underline-offset-4 hover:underline"
                 >
                   View Details
                 </Link>
@@ -350,7 +350,7 @@ export function CollectionPage() {
           <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#f0ede8] overflow-y-auto">
             <div className="p-8">
               {/* Header */}
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-serif text-[#3d3835]">Filters</h2>
                 <button 
                   onClick={() => setShowFilters(false)}
@@ -361,14 +361,14 @@ export function CollectionPage() {
               </div>
 
               {/* Category */}
-              <div className="mb-8">
-                <h3 className="text-sm font-medium text-[#3d3835] mb-4">Category</h3>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-[#3d3835] mb-3">Category</h3>
+                <div className="grid grid-cols-3 gap-2">
                   {categories.map(cat => (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
+                      className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedCategory === cat 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
@@ -386,14 +386,14 @@ export function CollectionPage() {
               </div>
 
               {/* Style */}
-              <div className="mb-8">
-                <h3 className="text-sm font-medium text-[#3d3835] mb-4">Style</h3>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-[#3d3835] mb-3">Style</h3>
+                <div className="grid grid-cols-2 gap-2">
                   {styles.map(style => (
                     <button
                       key={style}
                       onClick={() => toggleArrayFilter(selectedStyles, style, setSelectedStyles)}
-                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
+                      className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedStyles.includes(style) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
@@ -411,14 +411,14 @@ export function CollectionPage() {
               </div>
 
               {/* Color */}
-              <div className="mb-8">
-                <h3 className="text-sm font-medium text-[#3d3835] mb-4">Color</h3>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-[#3d3835] mb-3">Color</h3>
+                <div className="grid grid-cols-3 gap-2">
                   {colors.map(color => (
                     <button
                       key={color}
                       onClick={() => toggleArrayFilter(selectedColors, color, setSelectedColors)}
-                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
+                      className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedColors.includes(color) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
@@ -436,14 +436,14 @@ export function CollectionPage() {
               </div>
 
               {/* Material */}
-              <div className="mb-8">
-                <h3 className="text-sm font-medium text-[#3d3835] mb-4">Material</h3>
-                <div className="grid grid-cols-2 gap-3">
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-[#3d3835] mb-3">Material</h3>
+                <div className="grid grid-cols-3 gap-2">
                   {materials.map(mat => (
                     <button
                       key={mat}
                       onClick={() => toggleArrayFilter(selectedMaterials, mat, setSelectedMaterials)}
-                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
+                      className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedMaterials.includes(mat) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
@@ -461,25 +461,23 @@ export function CollectionPage() {
               </div>
 
               {/* Price Range */}
-              <div className="mb-8">
-                <h3 className="text-sm font-medium text-[#3d3835] mb-4">
-                  Price Range: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
+              <div className="mb-6">
+                <h3 className="text-sm font-medium text-[#3d3835] mb-3">
+                  Price: ${priceRange[0].toLocaleString()} - ${priceRange[1].toLocaleString()}
                 </h3>
-                <div className="space-y-4">
-                  <input
-                    type="range"
-                    min="0"
-                    max="10000"
-                    step="100"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                    className="w-full accent-[#3d3835]"
-                  />
-                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="10000"
+                  step="100"
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                  className="w-full accent-[#3d3835]"
+                />
               </div>
 
               {/* In Stock */}
-              <div className="mb-8">
+              <div className="mb-6">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -495,7 +493,7 @@ export function CollectionPage() {
               <div className="flex gap-3 pt-4 border-t border-[#5d5855]/10">
                 <button
                   onClick={clearFilters}
-                  className="flex-1 px-6 py-4 rounded-xl text-[#3d3835] text-sm font-medium"
+                  className="flex-1 px-6 py-3 rounded-xl text-[#3d3835] text-sm font-medium hover:brightness-105 transition-all"
                   style={{
                     boxShadow:
                       "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
@@ -505,7 +503,7 @@ export function CollectionPage() {
                 </button>
                 <button
                   onClick={() => setShowFilters(false)}
-                  className="flex-1 px-6 py-4 rounded-xl bg-[#3d3835] text-[#f0ede8] text-sm font-medium"
+                  className="flex-1 px-6 py-3 rounded-xl bg-[#3d3835] text-[#f0ede8] text-sm font-medium hover:brightness-110 transition-all"
                 >
                   Show {sortedProducts.length} results
                 </button>

@@ -317,21 +317,19 @@ export function ProductDetailPage({ id }: { id: string }) {
       </div>
 
       {/* Product Content */}
-      <section className="w-[90%] mx-auto mb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <section className="w-[90%] mx-auto mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Image */}
-          <CarvedBox className="rounded-[32px] p-12" delay={100}>
-            <div className="aspect-square flex items-center justify-center">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-auto h-[400px] object-contain"
-              />
-            </div>
+          <CarvedBox className="rounded-[32px] p-8 flex items-center justify-center" delay={100}>
+            <img 
+              src={product.image} 
+              alt={product.name}
+              className="w-auto max-h-[400px] object-contain"
+            />
           </CarvedBox>
 
           {/* Details */}
-          <div>
+          <div className="flex flex-col">
             <h1 className="text-4xl md:text-5xl font-serif text-[#3d3835] mb-4">
               {product.name}
             </h1>
@@ -389,10 +387,10 @@ export function ProductDetailPage({ id }: { id: string }) {
       </section>
 
       {/* Back to Collection */}
-      <section className="w-[90%] mx-auto mb-32 text-center">
+      <section className="w-[90%] mx-auto mb-16 text-center">
         <Link
           href="/collection"
-          className="inline-flex items-center gap-3 text-[#5d5855] hover:text-[#3d3835] transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-[#5d5855] hover:text-[#3d3835] transition-colors"
         >
           <ArrowRight className="w-4 h-4 rotate-180" />
           Back to Collection
@@ -400,7 +398,7 @@ export function ProductDetailPage({ id }: { id: string }) {
       </section>
 
       {/* Footer */}
-      <footer className="w-[90%] mx-auto pb-12 text-center">
+      <footer className="w-[90%] mx-auto pb-8 text-center">
         <p className="text-sm text-[#5d5855]">made by abie marangoni</p>
       </footer>
     </div>
