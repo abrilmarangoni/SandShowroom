@@ -1,8 +1,9 @@
 "use client"
 
-import { ArrowRight, ShoppingCart } from "lucide-react"
+import { ArrowRight, Check, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { useCart } from "./cart-context"
 
 function CarvedBox({ 
   children, 
@@ -82,7 +83,22 @@ function CarvedHeader({
   )
 }
 
+const featuredProducts = [
+  { id: 1, name: "Oslo Lounge Chair", price: 4200, image: "/l1.png" },
+  { id: 2, name: "Linear Dining Table", price: 8500, image: "/l4.png" },
+  { id: 3, name: "Sculptural Side Table", price: 2100, image: "/l7.png" },
+]
+
 export function FurnitureStore() {
+  const { addToCart, totalItems } = useCart()
+  const [addedProduct, setAddedProduct] = useState<string | null>(null)
+
+  const handleAddToCart = (product: typeof featuredProducts[0]) => {
+    addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
+    setAddedProduct(product.name)
+    setTimeout(() => setAddedProduct(null), 2000)
+  }
+
   return (
     <div className="min-h-screen bg-[#f0ede8]">
       {/* Hero Background Section */}
@@ -100,8 +116,8 @@ export function FurnitureStore() {
           <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
             <div className="text-2xl font-serif tracking-tight text-[#3d3835]">SAND</div>
             <nav className="hidden md:flex gap-8 text-sm text-[#3d3835]">
-              <button className="hover:opacity-70 transition-opacity">Shop</button>
-              <button className="hover:opacity-70 transition-opacity">Collections</button>
+              <Link href="/" className="hover:opacity-70 transition-opacity">Shop</Link>
+              <Link href="/collection" className="hover:opacity-70 transition-opacity">Collections</Link>
               <button className="hover:opacity-70 transition-opacity">About</button>
             </nav>
             <Link
@@ -113,9 +129,11 @@ export function FurnitureStore() {
               }}
             >
               <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-[#3d3835] text-[#f0ede8] text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center">
-                2
-              </span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#3d3835] text-[#f0ede8] text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
             </Link>
           </CarvedHeader>
         </header>
@@ -139,36 +157,21 @@ export function FurnitureStore() {
       <section className="w-[90%] mx-auto mb-32 pt-32">
         <h2 className="text-4xl font-serif mb-8 text-[#3d3835] text-center">Featured Pieces</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              name: "Oslo Lounge Chair",
-              price: "$4,200",
-              image: "/l1.png",
-            },
-            {
-              name: "Linear Dining Table",
-              price: "$8,500",
-              image: "/l4.png",
-            },
-            {
-              name: "Curve Sofa",
-              price: "$12,400",
-              image: "/l7.png",
-            },
-          ].map((product, i) => (
-            <div key={i}>
+          {featuredProducts.map((product, i) => (
+            <div key={product.id}>
               <CarvedBox className="rounded-[32px] p-8 mb-4" delay={i * 150}>
                 <div className="w-full h-[280px] flex items-center justify-center mb-6">
                   <img
-                    src={product.image || "/placeholder.svg"}
+                    src={product.image}
                     alt={product.name}
                     className="w-auto h-full object-contain"
                   />
                 </div>
                 <div className="text-center">
                   <h3 className="text-xl font-serif text-[#3d3835] mb-2">{product.name}</h3>
-                  <p className="text-[#5d5855] mb-4">{product.price}</p>
+                  <p className="text-[#5d5855] mb-4">${product.price.toLocaleString()}</p>
                   <button
+                    onClick={() => handleAddToCart(product)}
                     className="bg-[#f0ede8] text-[#3d3835] px-8 py-3 rounded-xl text-sm font-medium transition-all hover:translate-y-[-2px]"
                     style={{
                       boxShadow:
@@ -185,10 +188,10 @@ export function FurnitureStore() {
 
         {/* View Collection Button */}
         <div className="flex justify-center mt-16">
-          <button className="group flex items-center gap-3 bg-[#f0ede8] rounded-xl px-10 py-4 shadow-[8px_8px_16px_rgba(0,0,0,0.15),-8px_-8px_16px_rgba(255,255,255,0.7)] hover:shadow-[6px_6px_12px_rgba(0,0,0,0.15),-6px_-6px_12px_rgba(255,255,255,0.7)] transition-all">
+          <Link href="/collection" className="group flex items-center gap-3 bg-[#f0ede8] rounded-xl px-10 py-4 shadow-[8px_8px_16px_rgba(0,0,0,0.15),-8px_-8px_16px_rgba(255,255,255,0.7)] hover:shadow-[6px_6px_12px_rgba(0,0,0,0.15),-6px_-6px_12px_rgba(255,255,255,0.7)] transition-all">
             <span className="text-[#3d3835] text-lg font-medium tracking-wide">View Full Collection</span>
             <ArrowRight className="w-5 h-5 text-[#3d3835] group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -255,6 +258,21 @@ export function FurnitureStore() {
           </div>
         </CarvedBox>
       </footer>
+
+      {/* Added to Cart Toast */}
+      {addedProduct && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+          <div 
+            className="flex items-center gap-3 bg-[#3d3835] text-[#f0ede8] px-6 py-4 rounded-xl"
+            style={{
+              boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <Check className="w-5 h-5" />
+            <span>{addedProduct} added to cart</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

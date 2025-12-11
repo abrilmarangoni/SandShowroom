@@ -3,6 +3,7 @@
 import { ArrowRight, ShoppingCart, Trash2 } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { useCart } from "./cart-context"
 
 function CarvedBox({ 
   children, 
@@ -57,7 +58,6 @@ function CarvedHeader({
   children: React.ReactNode
   className?: string 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const [isCarved, setIsCarved] = useState(false)
 
   useEffect(() => {
@@ -69,7 +69,6 @@ function CarvedHeader({
 
   return (
     <div
-      ref={ref}
       className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
@@ -83,37 +82,7 @@ function CarvedHeader({
 }
 
 export function CartPage() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Oslo Lounge Chair",
-      price: 4200,
-      image: "/l1.png",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Linear Dining Table",
-      price: 8500,
-      image: "/l4.png",
-      quantity: 1,
-    },
-  ])
-
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const shipping = 200
-  const total = subtotal + shipping
-
-  const removeItem = (id: number) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
-  }
-
-  const updateQuantity = (id: number, quantity: number) => {
-    if (quantity < 1) return
-    setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity } : item
-    ))
-  }
+  const { items, updateQuantity, removeFromCart, totalItems, totalPrice } = useCart()
 
   return (
     <div className="min-h-screen bg-[#f0ede8]">
@@ -125,18 +94,23 @@ export function CartPage() {
           </Link>
           <nav className="hidden md:flex gap-8 text-sm text-[#3d3835]">
             <Link href="/" className="hover:opacity-70 transition-opacity">Shop</Link>
-            <Link href="/" className="hover:opacity-70 transition-opacity">Collections</Link>
-            <Link href="/" className="hover:opacity-70 transition-opacity">About</Link>
+            <Link href="/collection" className="hover:opacity-70 transition-opacity">Collections</Link>
+            <button className="hover:opacity-70 transition-opacity">About</button>
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center"
+            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
             }}
           >
             <ShoppingCart className="w-5 h-5" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-[#3d3835] text-[#f0ede8] text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
           </Link>
         </CarvedHeader>
       </header>
@@ -147,91 +121,101 @@ export function CartPage() {
           Your Cart
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-6">
-            {cartItems.map((item, i) => (
-              <CarvedBox key={item.id} className="rounded-[32px] p-6" delay={i * 100}>
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className="w-full md:w-48 h-48 flex items-center justify-center flex-shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-auto h-full object-contain"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="text-2xl font-serif text-[#3d3835] mb-2">{item.name}</h3>
-                      <p className="text-xl text-[#5d5855] mb-4">${item.price.toLocaleString()}</p>
+        {items.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-xl text-[#5d5855] mb-8">Your cart is empty</p>
+            <Link
+              href="/collection"
+              className="inline-flex items-center gap-3 bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px]"
+              style={{
+                boxShadow:
+                  "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
+              }}
+            >
+              Browse Collection
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Cart Items */}
+            <div className="lg:col-span-2 space-y-6">
+              {items.map((item, i) => (
+                <CarvedBox key={item.id} className="rounded-[32px] p-6" delay={i * 100}>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="w-full md:w-48 h-48 flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-auto h-full object-contain"
+                      />
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-3">
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-2xl font-serif text-[#3d3835] mb-2">{item.name}</h3>
+                        <p className="text-xl text-[#5d5855] mb-4">${item.price.toLocaleString()}</p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
+                            style={{
+                              boxShadow:
+                                "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
+                            }}
+                          >
+                            -
+                          </button>
+                          <span className="text-lg font-medium text-[#3d3835] w-8 text-center">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
+                            style={{
+                              boxShadow:
+                                "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
+                            }}
+                          >
+                            +
+                          </button>
+                        </div>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
-                          style={{
-                            boxShadow:
-                              "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
-                          }}
+                          onClick={() => removeFromCart(item.id)}
+                          className="ml-auto text-[#5d5855] hover:text-[#3d3835] transition-colors"
                         >
-                          -
-                        </button>
-                        <span className="text-lg font-medium text-[#3d3835] w-8 text-center">
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
-                          style={{
-                            boxShadow:
-                              "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
-                          }}
-                        >
-                          +
+                          <Trash2 className="w-5 h-5" />
                         </button>
                       </div>
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="ml-auto text-[#5d5855] hover:text-[#3d3835] transition-colors"
-                      >
-                        <Trash2 className="w-5 h-5" />
-                      </button>
                     </div>
                   </div>
-                </div>
-              </CarvedBox>
-            ))}
-          </div>
+                </CarvedBox>
+              ))}
+            </div>
 
-          {/* Checkout Summary */}
-          <div className="lg:col-span-1 flex">
-            <CarvedBox className="rounded-[32px] p-10 md:p-12 sticky top-8 w-full flex flex-col justify-between min-h-[500px]">
-              <div>
-                <h2 className="text-4xl font-serif mb-10 text-[#3d3835]">Order Summary</h2>
+            {/* Checkout Summary */}
+            <div className="lg:col-span-1 lg:sticky lg:top-8">
+              <CarvedBox className="rounded-[32px] p-8" delay={200}>
+                <h2 className="text-2xl font-serif mb-6 text-[#3d3835]">Order Summary</h2>
                 
-                <div className="space-y-6 mb-10">
-                  <div className="flex justify-between text-lg text-[#5d5855]">
-                    <span>Subtotal</span>
-                    <span className="font-medium">${subtotal.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between text-lg text-[#5d5855]">
-                    <span>Shipping</span>
-                    <span className="font-medium">${shipping}</span>
-                  </div>
-                  <div className="border-t border-[#5d5855]/20 pt-6 mt-6">
-                    <div className="flex justify-between text-2xl font-serif text-[#3d3835]">
-                      <span>Total</span>
-                      <span>${total.toLocaleString()}</span>
-                    </div>
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-between text-[#5d5855]">
+                    <span>Subtotal ({totalItems} items)</span>
+                    <span className="font-medium">${totalPrice.toLocaleString()}</span>
                   </div>
                 </div>
-              </div>
 
-              <div>
+                <div className="border-t border-[#5d5855]/20 pt-4 mb-6">
+                  <div className="flex justify-between text-xl font-serif text-[#3d3835]">
+                    <span>Total</span>
+                    <span>${totalPrice.toLocaleString()}</span>
+                  </div>
+                </div>
+
                 <Link
                   href="/checkout"
-                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] mb-6 flex items-center justify-center gap-3"
+                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px] mb-4 flex items-center justify-center gap-3"
                   style={{
                     boxShadow:
                       "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -242,17 +226,16 @@ export function CartPage() {
                 </Link>
 
                 <Link
-                  href="/"
-                  className="block text-center text-[#5d5855] hover:text-[#3d3835] transition-colors"
+                  href="/collection"
+                  className="block text-center text-[#5d5855] hover:text-[#3d3835] transition-colors text-sm"
                 >
                   Continue Shopping
                 </Link>
-              </div>
-            </CarvedBox>
+              </CarvedBox>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
 }
-
