@@ -245,15 +245,16 @@ export function FurnitureStore() {
           <p className="text-lg text-[#5d5855] mb-8 leading-relaxed max-w-2xl mx-auto">
             Experience our furniture in person. Book a private consultation with our design team.
           </p>
-          <button
-            className="bg-[#f0ede8] text-[#3d3835] px-12 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
+          <Link
+            href="/appointment"
+            className="inline-block bg-[#f0ede8] text-[#3d3835] px-12 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
             }}
           >
             Book Appointment
-          </button>
+          </Link>
         </CarvedBox>
       </section>
 
