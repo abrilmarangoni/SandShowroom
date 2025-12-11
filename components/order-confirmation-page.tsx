@@ -111,7 +111,7 @@ export function OrderConfirmationPage() {
             </nav>
             <Link
               href="/cart"
-              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
+              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -189,7 +189,7 @@ export function OrderConfirmationPage() {
         <div className="flex justify-center">
           <Link
             href="/"
-            className="bg-[#f0ede8] text-[#3d3835] px-8 py-3 rounded-xl font-medium transition-all hover:translate-y-[-2px] flex items-center justify-center"
+            className="bg-[#f0ede8] text-[#3d3835] px-8 py-3 rounded-xl font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",

@@ -82,12 +82,22 @@ function CarvedHeader({
 }
 
 const allProducts = [
-  { id: 1, name: "Luma Curved Sofa", price: 4800, image: "/l1.png", category: "Sofas", style: "Soft curves", color: "Cream", material: "Bouclé", inStock: true },
-  { id: 2, name: "Soft Edge Lounge Chair", price: 2200, image: "/l2.png", category: "Armchairs", style: "Minimal", color: "Off-white", material: "Linen", inStock: true },
-  { id: 3, name: "Gallery Coffee Table", price: 1800, image: "/l4.png", category: "Coffee Tables", style: "Scandinavian", color: "Light oak", material: "Solid wood", inStock: true },
-  { id: 4, name: "Calm Side Table", price: 950, image: "/l5.png", category: "Side Tables", style: "Minimal", color: "Warm beige", material: "Stone", inStock: false },
-  { id: 5, name: "Serene Daybed", price: 3400, image: "/l7.png", category: "Sofas", style: "Warm neutrals", color: "Cream", material: "Linen", inStock: true },
-  { id: 6, name: "Arc Floor Lamp", price: 890, image: "/f1.png", category: "Decor", style: "Statement piece", color: "Warm beige", material: "Metal", inStock: true },
+  { id: 1, name: "Helix Console", price: 3200, image: "/show1.png", category: "Side Tables", style: "Minimal", color: "Light oak", material: "Solid wood", inStock: true },
+  { id: 2, name: "Wave Lounge", price: 2200, image: "/show4.png", category: "Armchairs", style: "Minimal", color: "Off-white", material: "Linen", inStock: true },
+  { id: 3, name: "Cloud Chair", price: 2800, image: "/show5.png", category: "Armchairs", style: "Soft curves", color: "Cream", material: "Bouclé", inStock: true },
+  { id: 4, name: "Bloom Vessel", price: 380, image: "/show6.png", category: "Decor", style: "Minimal", color: "Warm beige", material: "Ceramic", inStock: true },
+  { id: 5, name: "Shell Sofa", price: 4800, image: "/show7.png", category: "Sofas", style: "Soft curves", color: "Cream", material: "Velvet", inStock: true },
+  { id: 6, name: "Zen Duo", price: 450, image: "/show11.png", category: "Decor", style: "Minimal", color: "Warm beige", material: "Stone", inStock: true },
+  { id: 7, name: "Timber Table", price: 2100, image: "/show10.png", category: "Coffee Tables", style: "Minimal", color: "Light oak", material: "Solid wood", inStock: true },
+  { id: 8, name: "Arc Seat", price: 2400, image: "/show13.png", category: "Armchairs", style: "Soft curves", color: "Cream", material: "Bouclé", inStock: true },
+  { id: 9, name: "Drop Light", price: 680, image: "/show14.png", category: "Decor", style: "Statement piece", color: "Warm beige", material: "Metal", inStock: true },
+  { id: 10, name: "Living Set", price: 6500, image: "/show9.png", category: "Sofas", style: "Scandinavian", color: "Cream", material: "Mixed", inStock: true },
+  { id: 11, name: "Zen Duo", price: 520, image: "/show3.png", category: "Decor", style: "Minimal", color: "Warm beige", material: "Stone", inStock: true },
+  { id: 12, name: "Hongo Lamp", price: 890, image: "/show2.png", category: "Decor", style: "Statement piece", color: "Cream", material: "Ceramic", inStock: true },
+  { id: 13, name: "Nest Chair", price: 2600, image: "/show8.png", category: "Armchairs", style: "Soft curves", color: "Warm beige", material: "Linen", inStock: true },
+  { id: 14, name: "Glow Lamp", price: 680, image: "/show12.png", category: "Decor", style: "Minimal", color: "Warm beige", material: "Metal", inStock: true },
+  { id: 15, name: "Haven Sofa", price: 5200, image: "/show15.png", category: "Sofas", style: "Warm neutrals", color: "Cream", material: "Linen", inStock: true },
+  { id: 16, name: "Oak Chair", price: 1600, image: "/show16.png", category: "Armchairs", style: "Minimal", color: "Light oak", material: "Solid wood", inStock: true },
 ]
 
 const categories = ["All", "Sofas", "Armchairs", "Coffee Tables", "Side Tables", "Decor"]
@@ -106,12 +116,12 @@ export function CollectionPage() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000])
   const [inStockOnly, setInStockOnly] = useState(false)
   const [sortBy, setSortBy] = useState("Featured")
-  const [addedProduct, setAddedProduct] = useState<string | null>(null)
+  const [addedProductId, setAddedProductId] = useState<number | null>(null)
 
   const handleAddToCart = (product: typeof allProducts[0]) => {
     addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
-    setAddedProduct(product.name)
-    setTimeout(() => setAddedProduct(null), 2000)
+    setAddedProductId(product.id)
+    setTimeout(() => setAddedProductId(null), 2000)
   }
 
   const filteredProducts = allProducts.filter(p => {
@@ -171,7 +181,7 @@ export function CollectionPage() {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
+            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -203,7 +213,7 @@ export function CollectionPage() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setShowFilters(true)}
-              className="flex items-center gap-2 bg-[#f0ede8] text-[#3d3835] px-5 py-3 rounded-xl transition-all hover:translate-y-[-2px]"
+              className="flex items-center gap-2 bg-[#f0ede8] text-[#3d3835] px-5 py-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -260,13 +270,25 @@ export function CollectionPage() {
                 <p className="text-lg text-[#5d5855] mb-6">${product.price.toLocaleString()}</p>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="w-full bg-[#f0ede8] text-[#3d3835] px-6 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px] mb-3"
+                  className={`w-full px-6 py-4 rounded-xl font-medium transition-all mb-3 flex items-center justify-center gap-2 ${
+                    addedProductId === product.id 
+                      ? "bg-[#3d3835] text-[#f0ede8]" 
+                      : "bg-[#f0ede8] text-[#3d3835] hover:translate-y-[-2px] hover:brightness-105"
+                  }`}
                   style={{
-                    boxShadow:
-                      "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
+                    boxShadow: addedProductId === product.id
+                      ? "inset 2px 2px 4px rgba(0, 0, 0, 0.2)"
+                      : "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
                   }}
                 >
-                  Add to Cart
+                  {addedProductId === product.id ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Added
+                    </>
+                  ) : (
+                    "Add to Cart"
+                  )}
                 </button>
                 <Link
                   href={`/product/${product.id}`}
@@ -307,7 +329,7 @@ export function CollectionPage() {
       </footer>
 
       {/* Added to Cart Toast */}
-      {addedProduct && (
+      {addedProductId && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-4">
           <div 
             className="flex items-center gap-3 bg-[#3d3835] text-[#f0ede8] px-6 py-4 rounded-xl"
@@ -316,7 +338,7 @@ export function CollectionPage() {
             }}
           >
             <Check className="w-5 h-5" />
-            <span>{addedProduct} added to cart</span>
+            <span>{allProducts.find(p => p.id === addedProductId)?.name} added to cart</span>
           </div>
         </div>
       )}
@@ -341,20 +363,20 @@ export function CollectionPage() {
               {/* Category */}
               <div className="mb-8">
                 <h3 className="text-sm font-medium text-[#3d3835] mb-4">Category</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {categories.map(cat => (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`px-4 py-2 rounded-full text-sm transition-all ${
+                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
                         selectedCategory === cat 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedCategory === cat
-                          ? "none"
-                          : "2px 2px 6px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.7)",
+                          ? "inset 2px 2px 4px rgba(0, 0, 0, 0.2)"
+                          : "3px 3px 8px rgba(0, 0, 0, 0.12), -3px -3px 8px rgba(255, 255, 255, 0.8)",
                       }}
                     >
                       {cat}
@@ -366,20 +388,20 @@ export function CollectionPage() {
               {/* Style */}
               <div className="mb-8">
                 <h3 className="text-sm font-medium text-[#3d3835] mb-4">Style</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {styles.map(style => (
                     <button
                       key={style}
                       onClick={() => toggleArrayFilter(selectedStyles, style, setSelectedStyles)}
-                      className={`px-4 py-2 rounded-full text-sm transition-all ${
+                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
                         selectedStyles.includes(style) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedStyles.includes(style)
-                          ? "none"
-                          : "2px 2px 6px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.7)",
+                          ? "inset 2px 2px 4px rgba(0, 0, 0, 0.2)"
+                          : "3px 3px 8px rgba(0, 0, 0, 0.12), -3px -3px 8px rgba(255, 255, 255, 0.8)",
                       }}
                     >
                       {style}
@@ -391,20 +413,20 @@ export function CollectionPage() {
               {/* Color */}
               <div className="mb-8">
                 <h3 className="text-sm font-medium text-[#3d3835] mb-4">Color</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {colors.map(color => (
                     <button
                       key={color}
                       onClick={() => toggleArrayFilter(selectedColors, color, setSelectedColors)}
-                      className={`px-4 py-2 rounded-full text-sm transition-all ${
+                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
                         selectedColors.includes(color) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedColors.includes(color)
-                          ? "none"
-                          : "2px 2px 6px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.7)",
+                          ? "inset 2px 2px 4px rgba(0, 0, 0, 0.2)"
+                          : "3px 3px 8px rgba(0, 0, 0, 0.12), -3px -3px 8px rgba(255, 255, 255, 0.8)",
                       }}
                     >
                       {color}
@@ -416,20 +438,20 @@ export function CollectionPage() {
               {/* Material */}
               <div className="mb-8">
                 <h3 className="text-sm font-medium text-[#3d3835] mb-4">Material</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {materials.map(mat => (
                     <button
                       key={mat}
                       onClick={() => toggleArrayFilter(selectedMaterials, mat, setSelectedMaterials)}
-                      className={`px-4 py-2 rounded-full text-sm transition-all ${
+                      className={`px-4 py-3 rounded-xl text-sm transition-all text-center ${
                         selectedMaterials.includes(mat) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
                           : "bg-[#f0ede8] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedMaterials.includes(mat)
-                          ? "none"
-                          : "2px 2px 6px rgba(0, 0, 0, 0.1), -2px -2px 6px rgba(255, 255, 255, 0.7)",
+                          ? "inset 2px 2px 4px rgba(0, 0, 0, 0.2)"
+                          : "3px 3px 8px rgba(0, 0, 0, 0.12), -3px -3px 8px rgba(255, 255, 255, 0.8)",
                       }}
                     >
                       {mat}

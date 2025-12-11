@@ -99,7 +99,7 @@ export function CartPage() {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
+            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -126,7 +126,7 @@ export function CartPage() {
             <p className="text-xl text-[#5d5855] mb-8">Your cart is empty</p>
             <Link
               href="/collection"
-              className="inline-flex items-center gap-3 bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px]"
+              className="inline-flex items-center gap-3 bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -159,7 +159,7 @@ export function CartPage() {
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
+                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px] hover:brightness-105"
                             style={{
                               boxShadow:
                                 "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -172,7 +172,7 @@ export function CartPage() {
                           </span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px]"
+                            className="bg-[#f0ede8] text-[#3d3835] w-10 h-10 rounded-lg flex items-center justify-center transition-all hover:translate-y-[-2px] hover:brightness-105"
                             style={{
                               boxShadow:
                                 "4px 4px 8px rgba(0, 0, 0, 0.15), -4px -4px 8px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -215,7 +215,7 @@ export function CartPage() {
 
                 <Link
                   href="/checkout"
-                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px] mb-4 flex items-center justify-center gap-3"
+                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-4 rounded-xl font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-4 flex items-center justify-center gap-3"
                   style={{
                     boxShadow:
                       "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",

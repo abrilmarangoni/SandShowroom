@@ -93,63 +93,163 @@ const products: Record<string, {
 }> = {
   "1": { 
     id: 1, 
-    name: "Luma Curved Sofa", 
-    price: 4800, 
-    image: "/l1.png",
-    description: "A sculptural three-seater sofa with gentle curves that invite relaxation. Upholstered in premium bouclé fabric for a soft, tactile experience.",
-    dimensions: "W 240cm × D 95cm × H 75cm",
-    materials: "Solid oak frame, high-density foam, bouclé fabric",
-    care: "Professional cleaning recommended. Avoid direct sunlight."
+    name: "Helix Console", 
+    price: 3200, 
+    image: "/show1.png",
+    description: "A sculptural console table with an organic flowing base. The curved wooden form creates a striking silhouette.",
+    dimensions: "W 150cm × D 45cm × H 85cm",
+    materials: "Solid walnut, hand-sculpted, natural oil finish",
+    care: "Dust with soft cloth. Apply wood oil every 6 months."
   },
   "2": { 
     id: 2, 
-    name: "Soft Edge Lounge Chair", 
+    name: "Wave Lounge", 
     price: 2200, 
-    image: "/l2.png",
-    description: "An organic lounge chair designed for comfort and visual lightness. Perfect for creating intimate conversation areas.",
-    dimensions: "W 85cm × D 90cm × H 78cm",
-    materials: "Solid walnut frame, foam padding, linen upholstery",
-    care: "Spot clean with mild detergent. Rotate cushions regularly."
+    image: "/show4.png",
+    description: "A sculptural lounge chair with curved wooden frame and plush white cushioning. Mid-century modern meets comfort.",
+    dimensions: "W 70cm × D 85cm × H 75cm",
+    materials: "Solid oak frame, high-resilience foam, linen upholstery",
+    care: "Vacuum regularly. Professional cleaning recommended yearly."
   },
   "3": { 
     id: 3, 
-    name: "Gallery Coffee Table", 
-    price: 1800, 
-    image: "/l4.png",
-    description: "A sculptural coffee table with an organic silhouette. Crafted from solid oak with a natural matte finish.",
-    dimensions: "W 120cm × D 70cm × H 35cm",
-    materials: "Solid oak, natural oil finish",
-    care: "Wipe with dry cloth. Use coasters to prevent marks."
+    name: "Cloud Chair", 
+    price: 2800, 
+    image: "/show5.png",
+    description: "An enveloping armchair with soft, rounded forms. Pure comfort wrapped in creamy bouclé fabric.",
+    dimensions: "W 95cm × D 90cm × H 75cm",
+    materials: "Steel frame, high-density foam, bouclé upholstery",
+    care: "Professional cleaning only. Rotate cushions monthly."
   },
   "4": { 
     id: 4, 
-    name: "Calm Side Table", 
-    price: 950, 
-    image: "/l5.png",
-    description: "A minimalist side table in warm travertine. Its simple form adds understated elegance to any space.",
-    dimensions: "W 45cm × D 45cm × H 50cm",
-    materials: "Natural travertine stone",
-    care: "Seal annually. Clean with stone-safe products only."
+    name: "Bloom Vessel", 
+    price: 380, 
+    image: "/show6.png",
+    description: "An elegant ceramic vase with dried botanical branches. Brings organic beauty to any space.",
+    dimensions: "Ø 18cm × H 45cm",
+    materials: "Hand-thrown ceramic, matte glaze, preserved botanicals",
+    care: "Dust gently. Keep away from direct sunlight."
   },
   "5": { 
     id: 5, 
-    name: "Serene Daybed", 
-    price: 3400, 
-    image: "/l7.png",
-    description: "A low-profile daybed that blurs the line between seating and rest. Ideal for reading nooks and sunlit corners.",
-    dimensions: "W 200cm × D 85cm × H 40cm",
-    materials: "Solid ash frame, natural latex, linen cover",
-    care: "Removable cover, machine washable. Flip mattress monthly."
+    name: "Shell Sofa", 
+    price: 4800, 
+    image: "/show7.png",
+    description: "A sculptural sofa with vertical channel tufting. The curved shell form creates a cocooning embrace.",
+    dimensions: "W 240cm × D 95cm × H 80cm",
+    materials: "Steel frame, high-density foam, velvet upholstery",
+    care: "Professional cleaning recommended. Rotate cushions monthly."
   },
   "6": { 
     id: 6, 
-    name: "Arc Floor Lamp", 
+    name: "Zen Duo", 
+    price: 450, 
+    image: "/show11.png",
+    description: "A pair of serene Buddha sculptures. Hand-carved with meditative poses that bring tranquility.",
+    dimensions: "H 30cm & H 25cm",
+    materials: "Natural sandstone, hand-finished",
+    care: "Dust gently. Avoid harsh cleaning products."
+  },
+  "7": { 
+    id: 7, 
+    name: "Timber Table", 
+    price: 2100, 
+    image: "/show10.png",
+    description: "A minimalist oak coffee table with clean lines. Natural wood grain adds warmth and character.",
+    dimensions: "W 140cm × D 60cm × H 40cm",
+    materials: "Solid oak, natural oil finish",
+    care: "Dust regularly. Apply wood oil every 6 months."
+  },
+  "8": { 
+    id: 8, 
+    name: "Arc Seat", 
+    price: 2400, 
+    image: "/show13.png",
+    description: "A compact curved armchair with enveloping form. Perfect for intimate reading corners.",
+    dimensions: "W 75cm × D 80cm × H 75cm",
+    materials: "Steel frame, molded foam, bouclé fabric",
+    care: "Professional cleaning only. Rotate cushions monthly."
+  },
+  "9": { 
+    id: 9, 
+    name: "Drop Light", 
+    price: 680, 
+    image: "/show14.png",
+    description: "A sculptural pendant light with organic form. Casts a warm, ambient glow over any space.",
+    dimensions: "Ø 45cm × H 50cm",
+    materials: "Hand-spun brass, linen diffuser",
+    care: "Dust gently. Use compatible LED bulbs only."
+  },
+  "10": { 
+    id: 10, 
+    name: "Living Set", 
+    price: 6500, 
+    image: "/show9.png",
+    description: "A curated set combining lounge chair, side table, and ambient light. Complete harmony in one collection.",
+    dimensions: "Various",
+    materials: "Mixed materials",
+    care: "See individual product care instructions."
+  },
+  "11": { 
+    id: 11, 
+    name: "Zen Duo", 
+    price: 520, 
+    image: "/show3.png",
+    description: "A pair of serene Buddha sculptures in cream sandstone. Meditative presence for mindful spaces.",
+    dimensions: "H 35cm & H 28cm",
+    materials: "Natural sandstone, hand-finished",
+    care: "Dust gently. Avoid harsh cleaning products."
+  },
+  "12": { 
+    id: 12, 
+    name: "Hongo Lamp", 
     price: 890, 
-    image: "/f1.png",
-    description: "A sculptural floor lamp with a graceful arc. Casts warm, diffused light perfect for evening ambiance.",
-    dimensions: "W 40cm × D 40cm × H 180cm",
-    materials: "Brass-plated steel, linen shade",
-    care: "Dust regularly. Use compatible bulbs only."
+    image: "/show2.png",
+    description: "A mushroom-shaped table lamp in warm cream. Soft, diffused light creates a cozy atmosphere.",
+    dimensions: "Ø 25cm × H 40cm",
+    materials: "Hand-crafted ceramic, integrated LED",
+    care: "Dust gently. Use compatible LED bulbs only."
+  },
+  "13": { 
+    id: 13, 
+    name: "Nest Chair", 
+    price: 2600, 
+    image: "/show8.png",
+    description: "A round armchair with embracing form and wooden legs. Sink into comfort with style.",
+    dimensions: "W 85cm × D 80cm × H 78cm",
+    materials: "Solid oak legs, high-density foam, linen upholstery",
+    care: "Vacuum regularly. Professional cleaning recommended yearly."
+  },
+  "14": { 
+    id: 14, 
+    name: "Glow Lamp", 
+    price: 680, 
+    image: "/show12.png",
+    description: "A minimalist ambient lamp with soft, diffused light. Perfect for creating atmosphere.",
+    dimensions: "Ø 30cm × H 40cm",
+    materials: "Brass-plated steel, linen diffuser",
+    care: "Dust gently. Use compatible LED bulbs only."
+  },
+  "15": { 
+    id: 15, 
+    name: "Haven Sofa", 
+    price: 5200, 
+    image: "/show15.png",
+    description: "A spacious lounge sofa designed for ultimate comfort. Perfect for family gatherings and relaxation.",
+    dimensions: "W 280cm × D 100cm × H 78cm",
+    materials: "Solid oak frame, high-density foam, linen upholstery",
+    care: "Professional cleaning recommended. Rotate cushions monthly."
+  },
+  "16": { 
+    id: 16, 
+    name: "Oak Chair", 
+    price: 1600, 
+    image: "/show16.png",
+    description: "A minimalist wooden chair with clean lines. Natural wood grain adds warmth and texture.",
+    dimensions: "W 50cm × D 55cm × H 80cm",
+    materials: "Solid oak, natural oil finish",
+    care: "Dust regularly. Apply wood oil every 6 months."
   },
 }
 
@@ -189,7 +289,7 @@ export function ProductDetailPage({ id }: { id: string }) {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
+            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -231,7 +331,7 @@ export function ProductDetailPage({ id }: { id: string }) {
           </CarvedBox>
 
           {/* Details */}
-          <div className="lg:pt-8">
+          <div>
             <h1 className="text-4xl md:text-5xl font-serif text-[#3d3835] mb-4">
               {product.name}
             </h1>
@@ -245,7 +345,7 @@ export function ProductDetailPage({ id }: { id: string }) {
             {/* Add to Cart */}
             <button
               onClick={handleAddToCart}
-              className={`w-full px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] mb-12 flex items-center justify-center gap-3 ${
+              className={`w-full px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-12 flex items-center justify-center gap-3 ${
                 added ? "bg-[#3d3835] text-[#f0ede8]" : "bg-[#f0ede8] text-[#3d3835]"
               }`}
               style={{

@@ -181,7 +181,7 @@ export function CheckoutPage() {
             </nav>
             <Link
               href="/cart"
-              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] flex items-center justify-center relative"
+              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -212,7 +212,7 @@ export function CheckoutPage() {
                 
                 <button
                 onClick={() => setPickupInStore(!pickupInStore)}
-                className={`w-full mb-6 px-6 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] ${
+                className={`w-full mb-6 px-6 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 ${
                   pickupInStore 
                     ? "bg-[#3d3835] text-[#f0ede8]" 
                     : "bg-[#f0ede8] text-[#3d3835]"
@@ -342,7 +342,7 @@ export function CheckoutPage() {
               <div>
                 <button
                   onClick={handleCompleteOrder}
-                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] mb-6 flex items-center justify-center gap-3"
+                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-6 flex items-center justify-center gap-3"
                   style={{
                     boxShadow:
                       "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
