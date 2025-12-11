@@ -197,14 +197,32 @@ export function CollectionPage() {
         </CarvedHeader>
       </header>
 
-      {/* Title */}
-      <section className="w-[90%] mx-auto mb-16 text-center">
-        <h1 className="text-5xl md:text-7xl font-serif text-[#3d3835] mb-6">
-          2026 Collection
-        </h1>
-        <p className="text-lg text-[#5d5855] max-w-xl mx-auto">
-          Curated pieces designed for calm, breathable spaces.
-        </p>
+      {/* Hero Title */}
+      <section className="w-[90%] mx-auto mb-20">
+        <CarvedBox className="rounded-[32px] p-12 md:p-16 relative overflow-hidden" delay={100}>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <span className="text-sm tracking-[0.3em] text-[#5d5855] uppercase mb-4 block">New Arrivals</span>
+              <h1 className="text-6xl md:text-8xl font-serif text-[#3d3835] mb-6 leading-none">
+                2026
+              </h1>
+              <p className="text-xl text-[#5d5855] max-w-md leading-relaxed">
+                Where form meets intention. Each piece crafted for spaces that breathe.
+              </p>
+            </div>
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <span className="text-4xl font-serif text-[#3d3835] block">16</span>
+                <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
+              </div>
+              <div className="w-px h-12 bg-[#5d5855]/20"></div>
+              <div className="text-center">
+                <span className="text-4xl font-serif text-[#3d3835] block">∞</span>
+                <span className="text-xs text-[#5d5855] tracking-wide uppercase">Possibilities</span>
+              </div>
+            </div>
+          </div>
+        </CarvedBox>
       </section>
 
       {/* Filter Bar */}
