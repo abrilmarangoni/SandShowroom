@@ -147,7 +147,7 @@ export function AppointmentPage() {
       </header>
 
       {/* Main Content */}
-      <section className="w-[90%] max-w-2xl mx-auto pb-16">
+      <section className="w-[90%] max-w-2xl mx-auto pb-16 pt-12">
         {/* Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-serif text-[#3d3835] mb-4">
