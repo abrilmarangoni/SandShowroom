@@ -210,16 +210,9 @@ export function CollectionPage() {
                 Where form meets intention. Each piece crafted for spaces that breathe.
               </p>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <span className="text-4xl font-serif text-[#3d3835] block">16</span>
-                <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
-              </div>
-              <div className="w-px h-12 bg-[#5d5855]/20"></div>
-              <div className="text-center">
-                <span className="text-4xl font-serif text-[#3d3835] block">∞</span>
-                <span className="text-xs text-[#5d5855] tracking-wide uppercase">Possibilities</span>
-              </div>
+            <div className="text-center">
+              <span className="text-4xl font-serif text-[#3d3835] block">16</span>
+              <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
             </div>
           </div>
         </CarvedBox>
