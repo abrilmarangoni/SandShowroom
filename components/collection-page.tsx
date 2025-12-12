@@ -70,7 +70,6 @@ const allProducts = [
   { id: 12, name: "Hongo Lamp", price: 890, image: "/show2.png", category: "Decor", style: "Statement piece", color: "Cream", material: "Ceramic", inStock: true },
   { id: 13, name: "Nest Chair", price: 2600, image: "/show8.png", category: "Armchairs", style: "Soft curves", color: "Warm beige", material: "Linen", inStock: true },
   { id: 14, name: "Glow Lamp", price: 680, image: "/show12.png", category: "Decor", style: "Minimal", color: "Warm beige", material: "Metal", inStock: true },
-  { id: 15, name: "Haven Sofa", price: 5200, image: "/show15.png", category: "Sofas", style: "Warm neutrals", color: "Cream", material: "Linen", inStock: true },
   { id: 16, name: "Oak Chair", price: 1600, image: "/show16.png", category: "Armchairs", style: "Minimal", color: "Light oak", material: "Solid wood", inStock: true },
 ]
 
@@ -172,8 +171,8 @@ export function CollectionPage() {
       </header>
 
       {/* Hero Title */}
-      <section className="w-[90%] mx-auto mb-20">
-        <CarvedBox className="rounded-[32px] p-12 md:p-16" delay={100}>
+      <section className="w-[90%] mx-auto mb-12 md:mb-20">
+        <CarvedBox className="rounded-[24px] md:rounded-[32px] p-8 md:p-12 lg:p-16" delay={100}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex-1">
                 <span className="text-sm tracking-[0.3em] text-[#5d5855] uppercase mb-4 block">2026 Collection</span>
@@ -182,7 +181,7 @@ export function CollectionPage() {
                 </h1>
               </div>
               <div className="text-center">
-                <span className="text-4xl font-serif text-[#3d3835] block">16</span>
+                <span className="text-4xl font-serif text-[#3d3835] block">15</span>
                 <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
               </div>
             </div>
@@ -231,16 +230,16 @@ export function CollectionPage() {
       </section>
 
       {/* Products Grid */}
-      <section className="w-[90%] mx-auto mb-32">
+      <section className="w-[90%] mx-auto mb-16 md:mb-32">
         {sortedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {sortedProducts.map((product, index) => (
-              <CarvedBox key={product.id} className="rounded-[32px] p-8" delay={index * 100}>
-                <div className="aspect-square flex items-center justify-center mb-6 relative">
+              <CarvedBox key={product.id} className="rounded-[24px] md:rounded-[32px] p-6 md:p-8" delay={index * 100}>
+                <div className="aspect-square flex items-center justify-center mb-4 md:mb-6 relative">
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    className="w-auto h-[280px] object-contain"
+                    className="w-auto h-[200px] md:h-[280px] object-contain"
                   />
                   {!product.inStock && (
                     <span className="absolute top-2 left-2 text-xs text-[#5d5855] bg-[#E9E4DC] px-3 py-1 rounded-full">

@@ -90,8 +90,8 @@ export function CartPage() {
       </header>
 
       {/* Cart Content */}
-      <div className="w-[90%] max-w-6xl mx-auto mb-32">
-        <h1 className="text-5xl md:text-6xl font-serif mb-12 text-[#3d3835] text-center">
+      <div className="w-[90%] max-w-6xl mx-auto mb-16 md:mb-32">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-8 md:mb-12 text-[#3d3835] text-center">
           Your Cart
         </h1>
 
@@ -111,13 +111,13 @@ export function CartPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-start">
             {/* Cart Items */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 md:space-y-6">
               {items.map((item, i) => (
-                <CarvedBox key={item.id} className="rounded-[32px] p-6" delay={i * 100}>
+                <CarvedBox key={item.id} className="rounded-[24px] md:rounded-[32px] p-4 md:p-6" delay={i * 100}>
                   <div className="flex flex-col md:flex-row gap-6">
-                    <div className="w-full md:w-48 h-48 flex items-center justify-center flex-shrink-0">
+                    <div className="w-full md:w-48 h-32 md:h-48 flex items-center justify-center flex-shrink-0">
                       <img
                         src={item.image}
                         alt={item.name}
@@ -126,8 +126,8 @@ export function CartPage() {
                     </div>
                     <div className="flex-1 flex flex-col justify-between">
                       <div>
-                        <h3 className="text-2xl font-serif text-[#3d3835] mb-2">{item.name}</h3>
-                        <p className="text-xl text-[#5d5855] mb-4">${item.price.toLocaleString()}</p>
+                        <h3 className="text-lg md:text-2xl font-serif text-[#3d3835] mb-2">{item.name}</h3>
+                        <p className="text-base md:text-xl text-[#5d5855] mb-4">${item.price.toLocaleString()}</p>
                       </div>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-3">

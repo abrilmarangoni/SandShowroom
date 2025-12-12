@@ -205,16 +205,6 @@ const products: Record<string, {
     materials: "Brass-plated steel, linen diffuser",
     care: "Dust gently. Use compatible LED bulbs only."
   },
-  "15": { 
-    id: 15, 
-    name: "Haven Sofa", 
-    price: 5200, 
-    image: "/show15.png",
-    description: "A spacious lounge sofa designed for ultimate comfort. Perfect for family gatherings and relaxation.",
-    dimensions: "W 280cm × D 100cm × H 78cm",
-    materials: "Solid oak frame, high-density foam, linen upholstery",
-    care: "Professional cleaning recommended. Rotate cushions monthly."
-  },
   "16": { 
     id: 16, 
     name: "Oak Chair", 
@@ -272,7 +262,7 @@ export function ProductDetailPage({ id }: { id: string }) {
   return (
     <div className="min-h-screen bg-[#E9E4DC]">
       {/* Header */}
-      <header className="w-[90%] mx-auto pt-6 mb-16">
+      <header className="w-[90%] mx-auto pt-6 mb-8 md:mb-16">
         <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
           <Link href="/" className="text-2xl font-serif tracking-tight text-[#3d3835]">
             SAND
@@ -314,13 +304,13 @@ export function ProductDetailPage({ id }: { id: string }) {
 
       {/* Product Content */}
       <section className="w-[90%] mx-auto mb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-stretch">
           {/* Image */}
-          <CarvedBox className="rounded-[32px] p-8 flex items-center justify-center" delay={100}>
+          <CarvedBox className="rounded-[24px] md:rounded-[32px] p-6 md:p-8 flex items-center justify-center" delay={100}>
             <img 
               src={product.image} 
               alt={product.name}
-              className="w-auto max-h-[400px] object-contain"
+              className="w-auto max-h-[280px] md:max-h-[400px] object-contain"
             />
           </CarvedBox>
 
@@ -329,17 +319,17 @@ export function ProductDetailPage({ id }: { id: string }) {
             <h1 className="text-4xl md:text-5xl font-serif text-[#3d3835] mb-4">
               {product.name}
             </h1>
-            <p className="text-2xl text-[#5d5855] mb-8">
+            <p className="text-xl md:text-2xl text-[#5d5855] mb-6 md:mb-8">
               ${product.price.toLocaleString()}
             </p>
-            <p className="text-[#5d5855] leading-relaxed mb-12">
+            <p className="text-sm md:text-base text-[#5d5855] leading-relaxed mb-8 md:mb-12">
               {product.description}
             </p>
 
             {/* Add to Cart */}
             <button
               onClick={(e) => handleAddToCart(e)}
-              className={`w-full px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-12 flex items-center justify-center gap-3 ${
+              className={`w-full px-6 md:px-8 py-4 md:py-5 rounded-xl text-base md:text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-8 md:mb-12 flex items-center justify-center gap-3 ${
                 added ? "bg-[#3d3835] text-[#f0ede8]" : "bg-[#E9E4DC] text-[#3d3835]"
               }`}
               style={{

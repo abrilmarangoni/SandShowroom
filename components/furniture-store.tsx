@@ -173,13 +173,13 @@ export function FurnitureStore() {
       </section>
 
       {/* Product Grid */}
-      <section className="w-[90%] mx-auto mb-48 pt-24">
-        <h2 className="text-4xl font-serif mb-16 text-[#3d3835] text-center">Featured Pieces</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <section className="w-[90%] mx-auto mb-24 md:mb-48 pt-12 md:pt-24">
+        <h2 className="text-2xl md:text-4xl font-serif mb-8 md:mb-16 text-[#3d3835] text-center">Featured Pieces</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
           {featuredProducts.map((product, i) => (
             <div key={product.id}>
-              <CarvedBox className="rounded-[32px] p-10 mb-4" delay={i * 150}>
-                <div className="w-full h-[280px] flex items-center justify-center mb-6">
+              <CarvedBox className="rounded-[24px] md:rounded-[32px] p-6 md:p-10 mb-4" delay={i * 150}>
+                <div className="w-full h-[200px] md:h-[280px] flex items-center justify-center mb-4 md:mb-6">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -221,15 +221,15 @@ export function FurnitureStore() {
       </section>
 
       {/* About Section */}
-      <section className="w-[90%] mx-auto mb-48">
-        <CarvedBox className="rounded-[32px] p-16 md:p-20">
+      <section className="w-[90%] mx-auto mb-24 md:mb-48">
+        <CarvedBox className="rounded-[24px] md:rounded-[32px] p-8 md:p-16 lg:p-20">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-serif mb-8 text-[#3d3835]">Crafted with Purpose</h2>
-            <p className="text-lg text-[#5d5855] mb-12 leading-relaxed">
+            <h2 className="text-2xl md:text-4xl font-serif mb-6 md:mb-8 text-[#3d3835]">Crafted with Purpose</h2>
+            <p className="text-base md:text-lg text-[#5d5855] mb-8 md:mb-12 leading-relaxed">
               Every piece is thoughtfully designed and meticulously crafted using sustainably sourced materials. We
               believe furniture should last generations, not seasons.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+            <div className="grid grid-cols-3 gap-4 md:gap-12 mt-8 md:mt-16">
               <div>
                 <div className="text-3xl font-serif mb-2 text-[#3d3835]">15+</div>
                 <div className="text-sm text-[#5d5855]">Years Experience</div>
@@ -248,9 +248,9 @@ export function FurnitureStore() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-[90%] mx-auto mb-48">
-        <CarvedBox className="rounded-[32px] p-16 text-center">
-          <h2 className="text-4xl font-serif mb-4 text-[#3d3835]">Visit Our Showroom</h2>
+      <section className="w-[90%] mx-auto mb-24 md:mb-48">
+        <CarvedBox className="rounded-[24px] md:rounded-[32px] p-8 md:p-16 text-center">
+          <h2 className="text-2xl md:text-4xl font-serif mb-4 text-[#3d3835]">Visit Our Showroom</h2>
           <p className="text-lg text-[#5d5855] mb-8 leading-relaxed max-w-2xl mx-auto">
             Experience our furniture in person. Book a private consultation with our design team.
           </p>

@@ -147,10 +147,10 @@ export function AppointmentPage() {
       </header>
 
       {/* Main Content */}
-      <section className="w-[90%] max-w-2xl mx-auto pb-16 pt-12">
+      <section className="w-[90%] max-w-2xl mx-auto pb-16 pt-8 md:pt-12">
         {/* Title */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-serif text-[#3d3835] mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#3d3835] mb-4">
             Book a Visit
           </h1>
           <p className="text-[#5d5855]">
@@ -160,14 +160,14 @@ export function AppointmentPage() {
 
         {/* Step 1: Date */}
         {step === 1 && (
-          <CarvedBox className="rounded-[32px] p-8 md:p-10" delay={100}>
-            <h2 className="text-lg font-serif text-[#3d3835] mb-6">Select a date</h2>
-            <div className="grid grid-cols-7 gap-3 mb-8">
+          <CarvedBox className="rounded-[24px] md:rounded-[32px] p-6 md:p-8 lg:p-10" delay={100}>
+            <h2 className="text-base md:text-lg font-serif text-[#3d3835] mb-4 md:mb-6">Select a date</h2>
+            <div className="grid grid-cols-7 gap-2 md:gap-3 mb-6 md:mb-8">
               {dates.map((d) => (
                 <button
                   key={d.value}
                   onClick={() => setSelectedDate(d.value)}
-                  className={`p-4 rounded-xl text-center transition-all hover:brightness-105 ${
+                  className={`p-2 md:p-4 rounded-lg md:rounded-xl text-center transition-all hover:brightness-105 ${
                     selectedDate === d.value 
                       ? "bg-[#3d3835] text-[#f0ede8]" 
                       : "bg-[#E9E4DC] text-[#3d3835]"
@@ -178,10 +178,10 @@ export function AppointmentPage() {
                       : "3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.8)",
                   }}
                 >
-                  <span className={`text-xs block mb-1 ${selectedDate === d.value ? "text-[#f0ede8]/70" : "text-[#5d5855]"}`}>
+                  <span className={`text-[10px] md:text-xs block mb-1 ${selectedDate === d.value ? "text-[#f0ede8]/70" : "text-[#5d5855]"}`}>
                     {d.day}
                   </span>
-                  <span className="text-xl font-medium">{d.date}</span>
+                  <span className="text-base md:text-xl font-medium">{d.date}</span>
                 </button>
               ))}
             </div>

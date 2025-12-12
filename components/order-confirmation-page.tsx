@@ -98,7 +98,7 @@ export function OrderConfirmationPage() {
       </header>
 
       {/* Confirmation Content */}
-      <div className="w-[90%] max-w-2xl mx-auto pt-28 min-h-[calc(100vh-112px)] flex flex-col justify-center">
+      <div className="w-[90%] max-w-2xl mx-auto pt-24 md:pt-28 min-h-[calc(100vh-112px)] flex flex-col justify-center">
         {/* Success Header */}
         <div className="flex flex-col items-center justify-center mb-6">
           <div 
@@ -115,7 +115,7 @@ export function OrderConfirmationPage() {
         </div>
 
         {/* Order Number + Details Combined */}
-        <CarvedBox className="rounded-[32px] p-6 mb-6" delay={100}>
+        <CarvedBox className="rounded-[24px] md:rounded-[32px] p-4 md:p-6 mb-6" delay={100}>
           {/* Order Number */}
           <div className="text-center pb-4 border-b border-[#5d5855]/20 mb-4">
             <p className="text-xs text-[#5d5855] mb-1">Order Number</p>

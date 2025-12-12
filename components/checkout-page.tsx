@@ -171,18 +171,18 @@ export function CheckoutPage() {
       </header>
 
       {/* Checkout Content */}
-      <div className="w-[90%] max-w-6xl mx-auto mb-32 pt-32">
-        <h1 className="text-5xl md:text-6xl font-serif mb-12 text-[#3d3835] text-center">
+      <div className="w-[90%] max-w-6xl mx-auto mb-16 md:mb-32 pt-28 md:pt-32">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-8 md:mb-12 text-[#3d3835] text-center">
           Checkout
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-start">
           {/* Checkout Form */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
             {/* Shipping Address */}
-            <CarvedBox className="rounded-[32px] p-8 min-h-[500px] flex flex-col justify-between" delay={0}>
+            <CarvedBox className="rounded-[24px] md:rounded-[32px] p-6 md:p-8 min-h-0 md:min-h-[500px] flex flex-col justify-between" delay={0}>
               <div>
-                <h2 className="text-3xl font-serif mb-6 text-[#3d3835]">Shipping</h2>
+                <h2 className="text-2xl md:text-3xl font-serif mb-4 md:mb-6 text-[#3d3835]">Shipping</h2>
                 
                 <button
                 onClick={() => setPickupInStore(!pickupInStore)}
