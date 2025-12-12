@@ -39,7 +39,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -69,7 +69,7 @@ function CarvedHeader({
 
   return (
     <div
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 3px 3px 8px rgba(0, 0, 0, 0.12), inset -3px -3px 8px rgba(255, 255, 255, 0.6)"
@@ -268,14 +268,14 @@ export function ProductDetailPage({ id }: { id: string }) {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#f0ede8] flex items-center justify-center">
+      <div className="min-h-screen bg-[#E9E4DC] flex items-center justify-center">
         <p className="text-[#3d3835]">Product not found</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Header */}
       <header className="w-[90%] mx-auto pt-6 mb-16">
         <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
@@ -289,7 +289,7 @@ export function ProductDetailPage({ id }: { id: string }) {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+            className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -344,7 +344,7 @@ export function ProductDetailPage({ id }: { id: string }) {
             <button
               onClick={handleAddToCart}
               className={`w-full px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-12 flex items-center justify-center gap-3 ${
-                added ? "bg-[#3d3835] text-[#f0ede8]" : "bg-[#f0ede8] text-[#3d3835]"
+                added ? "bg-[#3d3835] text-[#f0ede8]" : "bg-[#E9E4DC] text-[#3d3835]"
               }`}
               style={{
                 boxShadow: added 

@@ -39,7 +39,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -51,14 +51,13 @@ function CarvedBox({
   )
 }
 
-function CarvedHeader({ 
+function ScrollHeader({ 
   children, 
   className = "" 
 }: { 
   children: React.ReactNode
   className?: string 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const [isCarved, setIsCarved] = useState(false)
 
   useEffect(() => {
@@ -70,12 +69,11 @@ function CarvedHeader({
 
   return (
     <div
-      ref={ref}
-      className={`bg-[#f0ede8] backdrop-blur-sm transition-all duration-700 ease-out ${className}`}
+      className={`transition-all duration-500 ease-out bg-[#E9E4DC] ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
-          : "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(255, 255, 255, 0)",
+          : "none",
       }}
     >
       {children}
@@ -92,18 +90,41 @@ const featuredProducts = [
 export function FurnitureStore() {
   const { addToCart, totalItems } = useCart()
   const [addedProduct, setAddedProduct] = useState<string | null>(null)
+  const [flyingItem, setFlyingItem] = useState<{ x: number; y: number } | null>(null)
+  const cartRef = useRef<HTMLAnchorElement>(null)
 
-  const handleAddToCart = (product: typeof featuredProducts[0]) => {
-    addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
-    setAddedProduct(product.name)
-    setTimeout(() => setAddedProduct(null), 2000)
+  const handleAddToCart = (product: typeof featuredProducts[0], event: React.MouseEvent<HTMLButtonElement>) => {
+    const button = event.currentTarget
+    const buttonRect = button.getBoundingClientRect()
+    const cartRect = cartRef.current?.getBoundingClientRect()
+    
+    if (cartRect) {
+      // Start position (center of button)
+      const startX = buttonRect.left + buttonRect.width / 2
+      const startY = buttonRect.top + buttonRect.height / 2
+      
+      setFlyingItem({ x: startX, y: startY })
+      
+      // Remove flying item after animation
+      setTimeout(() => {
+        setFlyingItem(null)
+        addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
+        setAddedProduct(product.name)
+      }, 600)
+      
+      setTimeout(() => setAddedProduct(null), 2600)
+    } else {
+      addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
+      setAddedProduct(product.name)
+      setTimeout(() => setAddedProduct(null), 2000)
+    }
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Sticky Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-[5%] pt-4 pb-2">
-        <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
+        <ScrollHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
             <div className="text-2xl font-serif tracking-tight text-[#3d3835]">SAND</div>
             <nav className="hidden md:flex gap-8 text-sm text-[#3d3835]">
               <Link href="/" className="hover:opacity-70 transition-opacity">Shop</Link>
@@ -111,8 +132,9 @@ export function FurnitureStore() {
               <button className="hover:opacity-70 transition-opacity">About</button>
             </nav>
             <Link
+              ref={cartRef}
               href="/cart"
-              className="bg-[#e8e4df]/80 text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+              className="bg-[#E9E4DC]/80 text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -125,43 +147,24 @@ export function FurnitureStore() {
                 </span>
               )}
             </Link>
-          </CarvedHeader>
+          </ScrollHeader>
       </header>
 
-      {/* Hero Background Section */}
-      <div 
-        className="relative min-h-screen pt-24"
-        style={{
-          backgroundImage: "url('/back3.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        {/* Hero Section */}
-        <section className="min-h-[60vh] flex items-start justify-center pt-16 relative z-10">
-          <div className="text-center px-4">
-            <h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#3d3835] leading-tight text-balance">
-              Minimal forniture that allow space to remain open and calm.
-            </h1>
-            <p className="text-lg md:text-xl text-[#5d5855] max-w-2xl mx-auto leading-relaxed mb-12">
-              Shaped by proportion, material,
-              <br />
-              and the absence of excess.
-            </p>
-            <Link 
-              href="/collection" 
-              className="inline-flex items-center gap-3 bg-[#f0ede8] rounded-xl px-10 py-4 transition-all hover:translate-y-[-2px] hover:brightness-105"
-              style={{
-                boxShadow: "8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.7)",
-              }}
-            >
-              <span className="text-[#3d3835] text-lg font-medium tracking-wide">Showroom</span>
-              <ArrowRight className="w-5 h-5 text-[#3d3835]" />
-            </Link>
-          </div>
-        </section>
-      </div>
+      {/* Hero Section */}
+      <section className="w-full min-h-screen flex flex-col items-center justify-center bg-[#E9E4DC] px-6 pb-32 pt-24">
+        <h1 
+          className="text-6xl md:text-7xl lg:text-[96px] font-serif leading-[0.95] text-center"
+          style={{
+            color: "#3A362F",
+            filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.14))",
+          }}
+        >
+          Furniture shaped<br/>by proportion
+        </h1>
+        <p className="mt-8 text-xl md:text-2xl text-[#8C857B] font-light tracking-wide text-center max-w-2xl">
+          Defined by material. Elevated by restraint.
+        </p>
+      </section>
 
       {/* Product Grid */}
       <section className="w-[90%] mx-auto mb-48 pt-48">
@@ -181,8 +184,8 @@ export function FurnitureStore() {
                   <h3 className="text-xl font-serif text-[#3d3835] mb-2">{product.name}</h3>
                   <p className="text-[#5d5855] mb-4">${product.price.toLocaleString()}</p>
                   <button
-                    onClick={() => handleAddToCart(product)}
-                    className="bg-[#f0ede8] text-[#3d3835] px-8 py-3 rounded-xl text-sm font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
+                    onClick={(e) => handleAddToCart(product, e)}
+                    className="bg-[#E9E4DC] text-[#3d3835] px-8 py-3 rounded-xl text-sm font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
                     style={{
                       boxShadow:
                         "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -204,7 +207,7 @@ export function FurnitureStore() {
 
         {/* View Collection Button */}
         <div className="flex justify-center mt-20">
-          <Link href="/collection" className="group flex items-center gap-2 bg-[#f0ede8] rounded-xl px-6 py-3 shadow-[4px_4px_10px_rgba(0,0,0,0.12),-4px_-4px_10px_rgba(255,255,255,0.7)] hover:shadow-[3px_3px_8px_rgba(0,0,0,0.12),-3px_-3px_8px_rgba(255,255,255,0.7)] transition-all hover:brightness-105">
+          <Link href="/collection" className="group flex items-center gap-2 bg-[#E9E4DC] rounded-xl px-6 py-3 shadow-[4px_4px_10px_rgba(0,0,0,0.12),-4px_-4px_10px_rgba(255,255,255,0.7)] hover:shadow-[3px_3px_8px_rgba(0,0,0,0.12),-3px_-3px_8px_rgba(255,255,255,0.7)] transition-all hover:brightness-105">
             <span className="text-[#3d3835] text-sm font-medium tracking-wide">View Full Collection</span>
             <ArrowRight className="w-4 h-4 text-[#3d3835] group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -247,7 +250,7 @@ export function FurnitureStore() {
           </p>
           <Link
             href="/appointment"
-            className="inline-block bg-[#f0ede8] text-[#3d3835] px-12 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
+            className="inline-block bg-[#E9E4DC] text-[#3d3835] px-12 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -290,6 +293,50 @@ export function FurnitureStore() {
           </div>
         </div>
       )}
+
+      {/* Flying Cart Animation */}
+      {flyingItem && cartRef.current && (
+        <div
+          className="fixed z-[100] pointer-events-none"
+          style={{
+            left: flyingItem.x,
+            top: flyingItem.y,
+            animation: "flyToCart 0.6s ease-in-out forwards",
+            ["--target-x" as string]: `${cartRef.current.getBoundingClientRect().left + cartRef.current.getBoundingClientRect().width / 2 - flyingItem.x}px`,
+            ["--target-y" as string]: `${cartRef.current.getBoundingClientRect().top + cartRef.current.getBoundingClientRect().height / 2 - flyingItem.y}px`,
+          }}
+        >
+          <div 
+            className="w-4 h-4 rounded-full bg-[#3d3835]"
+            style={{
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+            }}
+          />
+        </div>
+      )}
+
+      <style jsx global>{`
+        @keyframes flyToCart {
+          0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(
+              calc(var(--target-x) * 0.5 - 50%), 
+              calc(var(--target-y) * 0.5 - 100px)
+            ) scale(1.2);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(
+              calc(var(--target-x) - 50%), 
+              calc(var(--target-y) - 50%)
+            ) scale(0.5);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   )
 }

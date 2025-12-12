@@ -39,7 +39,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -71,7 +71,7 @@ function CarvedHeader({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 3px 3px 8px rgba(0, 0, 0, 0.12), inset -3px -3px 8px rgba(255, 255, 255, 0.6)"
@@ -105,7 +105,7 @@ function CarvedInput({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
-        className="w-full bg-[#f0ede8] text-[#3d3835] px-4 py-3 rounded-xl border-none outline-none transition-all"
+        className="w-full bg-[#E9E4DC] text-[#3d3835] px-4 py-3 rounded-xl border-none outline-none transition-all"
         style={{
           boxShadow:
             "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
@@ -140,17 +140,17 @@ export function CheckoutPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#f0ede8] flex items-center justify-center">
+      <div className="min-h-screen bg-[#E9E4DC] flex items-center justify-center">
         <div className="flex flex-col items-center gap-6">
           <div 
-            className="w-32 h-32 rounded-full bg-[#f0ede8] flex items-center justify-center animate-pulse"
+            className="w-32 h-32 rounded-full bg-[#E9E4DC] flex items-center justify-center animate-pulse"
             style={{
               boxShadow:
                 "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)",
             }}
           >
             <div 
-              className="w-24 h-24 rounded-full bg-[#f0ede8] flex items-center justify-center"
+              className="w-24 h-24 rounded-full bg-[#E9E4DC] flex items-center justify-center"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7)",
@@ -166,9 +166,9 @@ export function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 pt-6 pb-6 bg-[#f0ede8]">
+      <header className="fixed top-0 left-0 right-0 z-50 pt-6 pb-6 bg-[#E9E4DC]">
         <div className="w-[90%] mx-auto">
           <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
             <Link href="/" className="text-2xl font-serif tracking-tight text-[#3d3835]">
@@ -181,7 +181,7 @@ export function CheckoutPage() {
             </nav>
             <Link
               href="/cart"
-              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+              className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -215,7 +215,7 @@ export function CheckoutPage() {
                 className={`w-full mb-6 px-6 py-4 rounded-xl text-base font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 ${
                   pickupInStore 
                     ? "bg-[#3d3835] text-[#f0ede8]" 
-                    : "bg-[#f0ede8] text-[#3d3835]"
+                    : "bg-[#E9E4DC] text-[#3d3835]"
                 }`}
                 style={{
                   boxShadow:
@@ -265,7 +265,7 @@ export function CheckoutPage() {
                 <h2 className="text-3xl font-serif mb-6 text-[#3d3835]">Payment Method</h2>
                 
                 <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-[#f0ede8] cursor-pointer"
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-[#E9E4DC] cursor-pointer"
                   style={{
                     boxShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
                   }}
@@ -276,7 +276,7 @@ export function CheckoutPage() {
                   </label>
                 </div>
                 
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-[#f0ede8] cursor-pointer"
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-[#E9E4DC] cursor-pointer"
                   style={{
                     boxShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
                   }}
@@ -342,7 +342,7 @@ export function CheckoutPage() {
               <div>
                 <button
                   onClick={handleCompleteOrder}
-                  className="w-full bg-[#f0ede8] text-[#3d3835] px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-6 flex items-center justify-center gap-3"
+                  className="w-full bg-[#E9E4DC] text-[#3d3835] px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-6 flex items-center justify-center gap-3"
                   style={{
                     boxShadow:
                       "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",

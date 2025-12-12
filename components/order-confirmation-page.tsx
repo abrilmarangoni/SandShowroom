@@ -38,7 +38,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -68,7 +68,7 @@ function CarvedHeader({
 
   return (
     <div
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 3px 3px 8px rgba(0, 0, 0, 0.12), inset -3px -3px 8px rgba(255, 255, 255, 0.6)"
@@ -96,9 +96,9 @@ export function OrderConfirmationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 pt-6 pb-6 bg-[#f0ede8]">
+      <header className="fixed top-0 left-0 right-0 z-50 pt-6 pb-6 bg-[#E9E4DC]">
         <div className="w-[90%] mx-auto">
           <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
             <Link href="/" className="text-2xl font-serif tracking-tight text-[#3d3835]">
@@ -111,7 +111,7 @@ export function OrderConfirmationPage() {
             </nav>
             <Link
               href="/cart"
-              className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+              className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -128,7 +128,7 @@ export function OrderConfirmationPage() {
         {/* Success Header */}
         <div className="flex flex-col items-center justify-center mb-6">
           <div 
-            className="w-14 h-14 rounded-full bg-[#f0ede8] flex items-center justify-center mb-4"
+            className="w-14 h-14 rounded-full bg-[#E9E4DC] flex items-center justify-center mb-4"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -189,7 +189,7 @@ export function OrderConfirmationPage() {
         <div className="flex justify-center">
           <Link
             href="/"
-            className="bg-[#f0ede8] text-[#3d3835] px-8 py-3 rounded-xl font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center"
+            className="bg-[#E9E4DC] text-[#3d3835] px-8 py-3 rounded-xl font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",

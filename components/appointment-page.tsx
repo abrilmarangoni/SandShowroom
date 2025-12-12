@@ -39,7 +39,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -69,7 +69,7 @@ function CarvedHeader({
 
   return (
     <div
-      className={`bg-[#f0ede8] backdrop-blur-sm transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] backdrop-blur-sm transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -112,7 +112,7 @@ export function AppointmentPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-[#f0ede8] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#E9E4DC] flex items-center justify-center p-4">
         <CarvedBox className="rounded-[32px] p-12 max-w-md w-full text-center" delay={0}>
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#3d3835] flex items-center justify-center">
             <Check className="w-8 h-8 text-[#f0ede8]" />
@@ -143,7 +143,7 @@ export function AppointmentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Header */}
       <header className="w-[90%] mx-auto pt-6 mb-12">
         <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
@@ -156,7 +156,7 @@ export function AppointmentPage() {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+            className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -196,7 +196,7 @@ export function AppointmentPage() {
                   className={`p-4 rounded-xl text-center transition-all hover:brightness-105 ${
                     selectedDate === d.value 
                       ? "bg-[#3d3835] text-[#f0ede8]" 
-                      : "bg-[#f0ede8] text-[#3d3835]"
+                      : "bg-[#E9E4DC] text-[#3d3835]"
                   }`}
                   style={{
                     boxShadow: selectedDate === d.value
@@ -237,7 +237,7 @@ export function AppointmentPage() {
                   className={`p-4 rounded-xl text-center transition-all hover:brightness-105 ${
                     selectedTime === time 
                       ? "bg-[#3d3835] text-[#f0ede8]" 
-                      : "bg-[#f0ede8] text-[#3d3835]"
+                      : "bg-[#E9E4DC] text-[#3d3835]"
                   }`}
                   style={{
                     boxShadow: selectedTime === time
@@ -273,7 +273,7 @@ export function AppointmentPage() {
                 placeholder="Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full p-4 rounded-xl bg-[#f0ede8] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
+                className="w-full p-4 rounded-xl bg-[#E9E4DC] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
                 style={{
                   boxShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
                 }}
@@ -283,7 +283,7 @@ export function AppointmentPage() {
                 placeholder="Email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full p-4 rounded-xl bg-[#f0ede8] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
+                className="w-full p-4 rounded-xl bg-[#E9E4DC] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
                 style={{
                   boxShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
                 }}
@@ -293,7 +293,7 @@ export function AppointmentPage() {
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full p-4 rounded-xl bg-[#f0ede8] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
+                className="w-full p-4 rounded-xl bg-[#E9E4DC] text-[#3d3835] outline-none placeholder:text-[#5d5855]/60"
                 style={{
                   boxShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
                 }}

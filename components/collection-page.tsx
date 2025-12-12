@@ -39,7 +39,7 @@ function CarvedBox({
   return (
     <div
       ref={ref}
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
@@ -69,7 +69,7 @@ function CarvedHeader({
 
   return (
     <div
-      className={`bg-[#f0ede8] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
       style={{
         boxShadow: isCarved 
           ? "inset 3px 3px 8px rgba(0, 0, 0, 0.12), inset -3px -3px 8px rgba(255, 255, 255, 0.6)"
@@ -167,7 +167,7 @@ export function CollectionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f0ede8]">
+    <div className="min-h-screen bg-[#E9E4DC]">
       {/* Header */}
       <header className="w-[90%] mx-auto pt-6 mb-24">
         <CarvedHeader className="rounded-2xl px-8 py-3 flex items-center justify-between">
@@ -181,7 +181,7 @@ export function CollectionPage() {
           </nav>
           <Link
             href="/cart"
-            className="bg-[#f0ede8] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
+            className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
               boxShadow:
                 "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.4)",
@@ -224,7 +224,7 @@ export function CollectionPage() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setShowFilters(true)}
-              className="flex items-center gap-2 bg-[#f0ede8] text-[#3d3835] px-5 py-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105"
+              className="flex items-center gap-2 bg-[#E9E4DC] text-[#3d3835] px-5 py-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105"
               style={{
                 boxShadow:
                   "4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(255, 255, 255, 0.7), inset 1px 1px 2px rgba(255, 255, 255, 0.5)",
@@ -246,7 +246,7 @@ export function CollectionPage() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-[#f0ede8] text-[#3d3835] px-4 py-3 rounded-xl border-none outline-none text-sm cursor-pointer"
+            className="bg-[#E9E4DC] text-[#3d3835] px-4 py-3 rounded-xl border-none outline-none text-sm cursor-pointer"
             style={{
               boxShadow:
                 "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)",
@@ -272,7 +272,7 @@ export function CollectionPage() {
                     className="w-auto h-[280px] object-contain"
                   />
                   {!product.inStock && (
-                    <span className="absolute top-2 left-2 text-xs text-[#5d5855] bg-[#f0ede8] px-3 py-1 rounded-full">
+                    <span className="absolute top-2 left-2 text-xs text-[#5d5855] bg-[#E9E4DC] px-3 py-1 rounded-full">
                       Pre-order
                     </span>
                   )}
@@ -284,7 +284,7 @@ export function CollectionPage() {
                   className={`w-full px-6 py-4 rounded-xl font-medium transition-all mb-3 flex items-center justify-center gap-2 ${
                     addedProductId === product.id 
                       ? "bg-[#3d3835] text-[#f0ede8]" 
-                      : "bg-[#f0ede8] text-[#3d3835] hover:translate-y-[-2px] hover:brightness-105"
+                      : "bg-[#E9E4DC] text-[#3d3835] hover:translate-y-[-2px] hover:brightness-105"
                   }`}
                   style={{
                     boxShadow: addedProductId === product.id
@@ -358,7 +358,7 @@ export function CollectionPage() {
       {showFilters && (
         <div className="fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/20" onClick={() => setShowFilters(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#f0ede8] overflow-y-auto">
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#E9E4DC] overflow-y-auto">
             <div className="p-8">
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
@@ -382,7 +382,7 @@ export function CollectionPage() {
                       className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedCategory === cat 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
-                          : "bg-[#f0ede8] text-[#3d3835]"
+                          : "bg-[#E9E4DC] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedCategory === cat
@@ -407,7 +407,7 @@ export function CollectionPage() {
                       className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedStyles.includes(style) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
-                          : "bg-[#f0ede8] text-[#3d3835]"
+                          : "bg-[#E9E4DC] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedStyles.includes(style)
@@ -432,7 +432,7 @@ export function CollectionPage() {
                       className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedColors.includes(color) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
-                          : "bg-[#f0ede8] text-[#3d3835]"
+                          : "bg-[#E9E4DC] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedColors.includes(color)
@@ -457,7 +457,7 @@ export function CollectionPage() {
                       className={`px-3 py-2 rounded-xl text-sm transition-all text-center hover:brightness-105 ${
                         selectedMaterials.includes(mat) 
                           ? "bg-[#3d3835] text-[#f0ede8]" 
-                          : "bg-[#f0ede8] text-[#3d3835]"
+                          : "bg-[#E9E4DC] text-[#3d3835]"
                       }`}
                       style={{
                         boxShadow: selectedMaterials.includes(mat)
