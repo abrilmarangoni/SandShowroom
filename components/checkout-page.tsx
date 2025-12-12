@@ -148,10 +148,10 @@ export function CheckoutPage() {
             <Link href="/" className="text-2xl font-serif tracking-tight text-[#3d3835]">
               SAND
             </Link>
-            <nav className="hidden md:flex gap-8 text-sm text-[#3d3835]">
-              <Link href="/" className="hover:opacity-70 transition-opacity">Shop</Link>
-              <Link href="/" className="hover:opacity-70 transition-opacity">Collections</Link>
-              <Link href="/" className="hover:opacity-70 transition-opacity">About</Link>
+            <nav className="hidden md:flex gap-4 text-sm text-[#3d3835] items-center">
+              <Link href="/" className="px-4 py-2 hover:opacity-70 transition-opacity">Shop</Link>
+              <Link href="/collection" className="px-4 py-2 hover:opacity-70 transition-opacity">Collections</Link>
+              <button className="px-4 py-2 hover:opacity-70 transition-opacity">About</button>
             </nav>
             <Link
               href="/cart"
