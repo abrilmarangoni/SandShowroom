@@ -8,42 +8,16 @@ import { useCart } from "./cart-context"
 function CarvedBox({ 
   children, 
   className = "", 
-  delay = 0 
 }: { 
   children: React.ReactNode
   className?: string
   delay?: number 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isCarved, setIsCarved] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsCarved(true)
-          }, delay)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [delay])
-
   return (
     <div
-      ref={ref}
-      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] ${className}`}
       style={{
-        boxShadow: isCarved 
-          ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
-          : "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(255, 255, 255, 0)",
+        boxShadow: "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)",
       }}
     >
       {children}
@@ -256,13 +230,34 @@ const products: Record<string, {
 export function ProductDetailPage({ id }: { id: string }) {
   const { addToCart, totalItems } = useCart()
   const [added, setAdded] = useState(false)
+  const [flyingItem, setFlyingItem] = useState<{ x: number; y: number } | null>(null)
+  const cartRef = useRef<HTMLAnchorElement>(null)
   const product = products[id]
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (product) {
-      addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
-      setAdded(true)
-      setTimeout(() => setAdded(false), 2000)
+      const button = event.currentTarget
+      const buttonRect = button.getBoundingClientRect()
+      const cartRect = cartRef.current?.getBoundingClientRect()
+      
+      if (cartRect) {
+        const startX = buttonRect.left + buttonRect.width / 2
+        const startY = buttonRect.top + buttonRect.height / 2
+        
+        setFlyingItem({ x: startX, y: startY })
+        
+        setTimeout(() => {
+          setFlyingItem(null)
+          addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
+          setAdded(true)
+        }, 600)
+        
+        setTimeout(() => setAdded(false), 2600)
+      } else {
+        addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
+      }
     }
   }
 
@@ -288,6 +283,7 @@ export function ProductDetailPage({ id }: { id: string }) {
             <button className="hover:opacity-70 transition-opacity">About</button>
           </nav>
           <Link
+            ref={cartRef}
             href="/cart"
             className="bg-[#E9E4DC] text-[#3d3835] p-3 rounded-xl transition-all hover:translate-y-[-2px] hover:brightness-105 flex items-center justify-center relative"
             style={{
@@ -342,7 +338,7 @@ export function ProductDetailPage({ id }: { id: string }) {
 
             {/* Add to Cart */}
             <button
-              onClick={handleAddToCart}
+              onClick={(e) => handleAddToCart(e)}
               className={`w-full px-8 py-5 rounded-xl text-lg font-medium transition-all hover:translate-y-[-2px] hover:brightness-105 mb-12 flex items-center justify-center gap-3 ${
                 added ? "bg-[#3d3835] text-[#f0ede8]" : "bg-[#E9E4DC] text-[#3d3835]"
               }`}
@@ -401,6 +397,50 @@ export function ProductDetailPage({ id }: { id: string }) {
       <footer className="w-[90%] mx-auto pb-8 text-center">
         <p className="text-sm text-[#5d5855]">made by abie marangoni</p>
       </footer>
+
+      {/* Flying Cart Animation */}
+      {flyingItem && cartRef.current && (
+        <div
+          className="fixed z-[100] pointer-events-none"
+          style={{
+            left: flyingItem.x,
+            top: flyingItem.y,
+            animation: "flyToCart 0.6s ease-in-out forwards",
+            ["--target-x" as string]: `${cartRef.current.getBoundingClientRect().left + cartRef.current.getBoundingClientRect().width / 2 - flyingItem.x}px`,
+            ["--target-y" as string]: `${cartRef.current.getBoundingClientRect().top + cartRef.current.getBoundingClientRect().height / 2 - flyingItem.y}px`,
+          }}
+        >
+          <div 
+            className="w-4 h-4 rounded-full bg-[#3d3835]"
+            style={{
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
+            }}
+          />
+        </div>
+      )}
+
+      <style jsx global>{`
+        @keyframes flyToCart {
+          0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: translate(
+              calc(var(--target-x) * 0.5 - 50%), 
+              calc(var(--target-y) * 0.5 - 100px)
+            ) scale(1.2);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(
+              calc(var(--target-x) - 50%), 
+              calc(var(--target-y) - 50%)
+            ) scale(0.5);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   )
 }

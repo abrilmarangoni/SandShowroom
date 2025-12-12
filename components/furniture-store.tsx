@@ -8,42 +8,16 @@ import { useCart } from "./cart-context"
 function CarvedBox({ 
   children, 
   className = "", 
-  delay = 0 
 }: { 
   children: React.ReactNode
   className?: string
   delay?: number 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isCarved, setIsCarved] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsCarved(true)
-          }, delay)
-        }
-      },
-      { threshold: 0.3 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [delay])
-
   return (
     <div
-      ref={ref}
-      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] ${className}`}
       style={{
-        boxShadow: isCarved 
-          ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
-          : "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(255, 255, 255, 0)",
+        boxShadow: "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)",
       }}
     >
       {children}
@@ -151,23 +125,55 @@ export function FurnitureStore() {
       </header>
 
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex flex-col items-center justify-center bg-[#E9E4DC] px-6 pb-32 pt-24">
-        <h1 
-          className="text-6xl md:text-7xl lg:text-[96px] font-serif leading-[0.95] text-center"
+      <section className="relative w-full flex items-center justify-center overflow-hidden" style={{ minHeight: "calc(100vh + 5px)" }}>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
-            color: "#3A362F",
-            filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.14))",
+            backgroundImage: "url('/back3.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
-        >
-          Furniture shaped<br/>by proportion
-        </h1>
-        <p className="mt-8 text-xl md:text-2xl text-[#8C857B] font-light tracking-wide text-center max-w-2xl">
-          Defined by material. Elevated by restraint.
-        </p>
+        />
+        
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#E9E4DC]/95 via-[#E9E4DC]/80 to-transparent" />
+        
+        {/* Bottom fade to blend with next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#E9E4DC] to-transparent" />
+        
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-32">
+          <div className="max-w-2xl">
+            {/* Decorative line */}
+            <div className="w-16 h-px bg-[#3A362F]/30 mb-12" />
+            
+            {/* Main Heading */}
+            <h1 
+              className="text-6xl md:text-7xl lg:text-8xl xl:text-[110px] font-serif leading-[0.92] text-[#3A362F] mb-8"
+              style={{
+                textShadow: "0 2px 20px rgba(0,0,0,0.08)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Furniture shaped<br/>
+              <span className="text-[#8C857B]">by proportion</span>
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl lg:text-3xl text-[#5d5855] font-light tracking-wide leading-relaxed mb-12 max-w-xl">
+              Defined by material.<br/>
+              Elevated by restraint.
+            </p>
+            
+            {/* Decorative line */}
+            <div className="w-24 h-px bg-[#3A362F]/20" />
+          </div>
+        </div>
       </section>
 
       {/* Product Grid */}
-      <section className="w-[90%] mx-auto mb-48 pt-48">
+      <section className="w-[90%] mx-auto mb-48 pt-24">
         <h2 className="text-4xl font-serif mb-16 text-[#3d3835] text-center">Featured Pieces</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {featuredProducts.map((product, i) => (

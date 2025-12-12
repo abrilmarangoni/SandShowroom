@@ -7,42 +7,16 @@ import { useEffect, useRef, useState } from "react"
 function CarvedBox({ 
   children, 
   className = "", 
-  delay = 0 
 }: { 
   children: React.ReactNode
   className?: string
   delay?: number 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isCarved, setIsCarved] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsCarved(true)
-          }, delay)
-        }
-      },
-      { threshold: 0.3 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [delay])
-
   return (
     <div
-      ref={ref}
-      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] ${className}`}
       style={{
-        boxShadow: isCarved 
-          ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
-          : "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(255, 255, 255, 0)",
+        boxShadow: "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)",
       }}
     >
       {children}

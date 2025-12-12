@@ -8,42 +8,16 @@ import { useCart } from "./cart-context"
 function CarvedBox({ 
   children, 
   className = "", 
-  delay = 0 
 }: { 
   children: React.ReactNode
   className?: string
   delay?: number 
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isCarved, setIsCarved] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsCarved(true)
-          }, delay)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [delay])
-
   return (
     <div
-      ref={ref}
-      className={`bg-[#E9E4DC] transition-all duration-700 ease-out ${className}`}
+      className={`bg-[#E9E4DC] ${className}`}
       style={{
-        boxShadow: isCarved 
-          ? "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)"
-          : "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(255, 255, 255, 0)",
+        boxShadow: "inset 4px 4px 12px rgba(0, 0, 0, 0.15), inset -4px -4px 12px rgba(255, 255, 255, 0.7)",
       }}
     >
       {children}
@@ -199,22 +173,19 @@ export function CollectionPage() {
 
       {/* Hero Title */}
       <section className="w-[90%] mx-auto mb-20">
-        <CarvedBox className="rounded-[32px] p-12 md:p-16 relative overflow-hidden" delay={100}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex-1">
-              <span className="text-sm tracking-[0.3em] text-[#5d5855] uppercase mb-4 block">New Arrivals</span>
-              <h1 className="text-6xl md:text-8xl font-serif text-[#3d3835] mb-6 leading-none">
-                2026
-              </h1>
-              <p className="text-xl text-[#5d5855] max-w-md leading-relaxed">
-                Where form meets intention. Each piece crafted for spaces that breathe.
-              </p>
+        <CarvedBox className="rounded-[32px] p-12 md:p-16" delay={100}>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex-1">
+                <span className="text-sm tracking-[0.3em] text-[#5d5855] uppercase mb-4 block">2026 Collection</span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-[#3d3835] leading-[1.1]">
+                  The Absence<br/>of Excess
+                </h1>
+              </div>
+              <div className="text-center">
+                <span className="text-4xl font-serif text-[#3d3835] block">16</span>
+                <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
+              </div>
             </div>
-            <div className="text-center">
-              <span className="text-4xl font-serif text-[#3d3835] block">16</span>
-              <span className="text-xs text-[#5d5855] tracking-wide uppercase">Pieces</span>
-            </div>
-          </div>
         </CarvedBox>
       </section>
 
